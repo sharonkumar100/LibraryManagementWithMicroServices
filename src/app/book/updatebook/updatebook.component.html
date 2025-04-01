@@ -1,0 +1,173 @@
+<div class="container my-5">
+    <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+      <form #updateBookForm="ngForm" (ngSubmit)="updateBook()">
+        <h3 class="text-center mb-4 text-primary fw-bold">Update Book</h3>
+  
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter Book ID</label>
+          <input
+            class="form-control"
+            name="bookID"
+            [(ngModel)]="book.bookID"
+            #bookID="ngModel"
+            required
+          />
+          <span
+            *ngIf="bookID.touched && bookID.errors?.['required']"
+            class="text-danger small"
+          >
+            Book ID is required.
+          </span>
+        </div>
+  
+     
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter Book Name</label>
+          <input
+            class="form-control"
+            name="title"
+            [(ngModel)]="book.title"
+            #title="ngModel"
+            required
+          />
+          <span
+            *ngIf="title.touched && title.errors?.['required']"
+            class="text-danger small"
+          >
+            Book name is required.
+          </span>
+        </div>
+  
+
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter Author</label>
+          <input
+            class="form-control"
+            name="author"
+            [(ngModel)]="book.author"
+            #author="ngModel"
+            required
+          />
+          <span
+            *ngIf="author.touched && author.errors?.['required']"
+            class="text-danger small"
+          >
+            Author is required.
+          </span>
+        </div>
+  
+
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter Genre</label>
+          <input
+            class="form-control"
+            name="genre"
+            [(ngModel)]="book.genre"
+            #genre="ngModel"
+            required
+          />
+          <span
+            *ngIf="genre.touched && genre.errors?.['required']"
+            class="text-danger small"
+          >
+            Genre is required.
+          </span>
+        </div>
+  
+
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter ISBN</label>
+          <input
+            class="form-control"
+            name="isbn"
+            [(ngModel)]="book.isbn"
+            #isbn="ngModel"
+            required
+          />
+          <span
+            *ngIf="isbn.touched && isbn.errors?.['required']"
+            class="text-danger small"
+          >
+            ISBN is required.
+          </span>
+        </div>
+  
+    
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter Year Published</label>
+          <input
+            class="form-control"
+            name="yearPublished"
+            [(ngModel)]="book.yearPublished"
+            #yearPublished="ngModel"
+            required
+          />
+          <span
+            *ngIf="yearPublished.touched && yearPublished.errors?.['required']"
+            class="text-danger small"
+          >
+            Year published is required.
+          </span>
+        </div>
+  
+      
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter Available Copies</label>
+          <input
+            class="form-control"
+            name="availableCopies"
+            [(ngModel)]="book.availableCopies"
+            #availableCopies="ngModel"
+            required
+          />
+          <span
+            *ngIf="availableCopies.touched && availableCopies.errors?.['required']"
+            class="text-danger small"
+          >
+            Available copies are required.
+          </span>
+        </div>
+
+     
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Upload Profile Image</label>
+        <input
+          type="file"
+          class="form-control-file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+        />
+        <div class="mt-3 text-center" *ngIf="imagePreview">
+          <p class="fw-semibold">Image Preview:</p>
+          <img
+          *ngIf="imagePreview; else defaultImage";
+            [src]="imagePreview || book.bookurl || 'assets/books/Java.png'"
+            alt="Profile Preview"
+            width="150"
+            class="img-thumbnail"
+          />
+          <ng-template #defaultImage>
+            <img 
+            [src]="book.bookurl"
+            alt="Existing Book Image"
+            width="150"
+            class="img-thumbnail"
+            />
+          </ng-template>
+        </div>
+      </div>
+  
+     
+        <div class="d-flex justify-content-center gap-3">
+          <button type="submit" class="btn btn-primary px-4">
+            Update Record
+          </button>
+          <button type="reset" class="btn btn-outline-secondary px-4">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  

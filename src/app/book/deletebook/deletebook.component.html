@@ -1,0 +1,35 @@
+<div class="container my-5">
+    <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+      <form #bookForm="ngForm" (ngSubmit)="deleteBook(bookForm.value.bookID)">
+        <h3 class="text-center mb-4 text-primary fw-bold">Delete Book</h3>
+  
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Enter Book ID</label>
+          <input
+          type="number"
+            class="form-control"
+            name="bookID"
+            [(ngModel)]="bookID"
+            #bookIDRef="ngModel"
+            required
+          />
+          <span
+            *ngIf="bookIDRef.touched && bookIDRef.errors?.['required']"
+            class="text-danger small"
+          >
+            Book ID is required.
+          </span>
+        </div>
+  
+        <div class="d-flex justify-content-center gap-3">
+          <button type="submit" class="btn btn-danger px-4">
+            Delete Book
+          </button>
+          <button type="reset" class="btn btn-outline-secondary px-4">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

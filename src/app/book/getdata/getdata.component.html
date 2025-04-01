@@ -1,0 +1,129 @@
+<div class="container my-5">
+    <div class="search-form-wrapper mx-auto shadow-lg p-4 rounded">
+      <form
+        #bookForm="ngForm"
+        (ngSubmit)="searchBook()"
+        class="text-success"
+        novalidate
+      >
+        <h3 class="text-center mb-4 text-primary fw-bold">Search Book</h3>
+  
+        <!-- Search Type -->
+        <div class="form-group mb-4">
+          <label for="searchType" class="form-label fw-semibold">Search By</label>
+          <select
+            class="form-select"
+            id="searchType"
+            [(ngModel)]="searchType"
+            name="searchType"
+            required
+          >
+            <option value="id">ID</option>
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="genre">Genre</option>
+          </select>
+        </div>
+  
+       
+        <div class="form-group mb-4">
+          <label for="searchValue" class="form-label fw-semibold">Enter Value</label>
+          <input
+            type="text"
+            class="form-control"
+            id="searchValue"
+            [(ngModel)]="searchValue"
+            name="searchValue"
+            required
+          />
+          <small class="text-warning">
+            <span *ngIf="bookForm.submitted && !searchValue">
+              Value is required.
+            </span>
+            <span
+              *ngIf="
+                searchType === 'id' &&
+                bookForm.submitted &&
+                !isInteger(searchValue)
+              "
+            >
+              ID must be an integer.
+            </span>
+          </small>
+        </div>
+  
+        
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <button type="submit" class="btn btn-primary btn-lg px-4 shadow-sm">
+            Search
+          </button>
+          <button type="reset" class="btn btn-outline-secondary btn-lg px-4 shadow-sm">
+            Cancel
+          </button>
+        </div>
+      </form>
+  
+      
+      <!-- <div *ngIf="msg" class="mt-4 alert alert-info">
+        <pre class="m-0">{{ msg }}</pre>
+      </div> -->
+    </div>
+  </div>
+
+
+
+
+  <div class="container my-5">
+    <div class="book-list-wrapper shadow-lg p-4 rounded">
+      <h2 class="text-center mb-4 text-primary fw-bold">Book List</h2>
+  
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-info">
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>ISBN</th>
+            <th>Year</th>
+            <th>Copies</th>
+            <th class="text-center" *ngIf="role==='admin'">Actions</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of booklist | async">
+            <td>{{ book.bookID }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.yearPublished }}</td>
+            <td>{{ book.availableCopies }}</td>
+            <td class="text-center" *ngIf="role==='admin'">
+              <button
+                class="btn btn-warning btn-sm px-3"
+                (click)="editBook(book.bookID)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm px-3 ms-2"
+                (click)="deleteBook(book.bookID)"
+              >
+                Delete
+              </button>
+            </td>
+            <td>
+              <img [src]="book?.bookurl" height="100" width="100" alt="Description of image">
+              <!-- <img src='/assets/books/Java.png' height="100" width="100" alt="Description of image"> -->
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  

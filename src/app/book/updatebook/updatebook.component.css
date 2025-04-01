@@ -1,0 +1,27 @@
+.form-wrapper {
+    background-color: #f8f9fa; /* Light grey background */
+    max-width: 500px;
+  }
+
+  input.ng-touched.ng-invalid {
+    border-color: #dc3545; /* Red border for invalid input */
+    background-color: #f8d7da; /* Light red background */
+  }
+
+  input.ng-touched.ng-valid {
+    border-color: #198754; /* Green border for valid input */
+    background-color: #d1e7dd; /* Light green background */
+  }
+
+  button.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+  }
+
+  button.btn-primary:hover {
+    background-color: #0b5ed7;
+  }
+
+  button.btn-outline-secondary:hover {
+    background-color: #e2e6ea;
+  }

@@ -1,0 +1,31 @@
+.nav-link {
+    color: #333;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav-link:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .nav-link.active {
+    background-color: #007bff;
+    color: #fff !important;
+  }
+  
+  .sub-link {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .vh-100 {
+      height: auto !important;
+    }
+  }
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #f8f9fa;
+  }
+  

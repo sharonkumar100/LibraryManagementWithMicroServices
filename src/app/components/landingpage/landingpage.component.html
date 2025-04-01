@@ -1,0 +1,43 @@
+
+<div class="wrapper"> 
+<section class=" content bg-light text-center py-5">
+    <div class="container">
+      <h2 class="display-5">Welcome to the Library Management System</h2>
+      <p class="lead">An efficient and user-friendly platform to manage all library operations</p>
+      <button class="btn btn-success btn-lg me-2" (click)="registerMember()" style="background: linear-gradient(to right, #1e3c72, #2a5298);">Get Started</button>
+    </div>
+  </section>
+   
+
+<section class="py-5" style="background: linear-gradient(to right, #e3f2fd, #bbdefb);">
+  <div class="container">
+    <h2 class="text-center mb-4 text-dark fw-bold">Contents</h2>
+    <div class="row g-4">
+
+      <div class="col-md-4" *ngFor="let module of modules">
+        <div class="card h-100 shadow" style="border-radius: 12px; border: none; background: #ffffff; transition: transform 0.3s ease-in-out;">
+          <div class="card-body text-center">
+            <h5 class="card-title text-dark fw-bold" style="color: #0d47a1;">{{ module.title }}</h5>
+            <p class="card-text" style="color: #424242;">{{ module.description }}</p>
+            <button class="btn" style="background: linear-gradient(to right, #0d47a1, #1976d2); color: white; border-radius: 20px; padding: 10px 20px;">{{ module.title }}</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<footer class="text-white text-center py-3" style="background: linear-gradient(to right, #37474f, #455a64);">
+  <div class="container">
+    <p class="mb-1 fw-bold">Library Management System</p>
+    <p>
+      <a href="#" class="text-white text-decoration-none me-3 fw-light">Privacy Policy</a>
+      <a href="#" class="text-white text-decoration-none fw-light">Terms of Service</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+  

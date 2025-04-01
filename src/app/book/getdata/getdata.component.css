@@ -1,0 +1,58 @@
+.search-form-wrapper {
+    background-color: #ffffff; 
+    max-width: 500px;
+    border-radius: 12px;
+    border: 1px solid #dee2e6;
+  }
+  
+  h3 {
+    font-weight: 700;
+  }
+  
+  .form-label {
+    font-size: 1rem;
+  }
+  
+  select.form-select,
+  input.form-control {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  input.ng-touched.ng-invalid,
+  select.ng-touched.ng-invalid {
+    border-color: #dc3545; 
+    background-color: #f8d7da; 
+  }
+  
+  input.ng-touched.ng-valid,
+  select.ng-touched.ng-valid {
+    border-color: #198754; 
+    background-color: #d1e7dd; 
+  }
+  
+  button.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.btn-primary:hover {
+    background-color: #0b5ed7;
+  }
+  
+  button.btn-outline-secondary {
+    transition: all 0.3s ease;
+  }
+  
+  button.btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+  }
+  
+  button {
+    border-radius: 8px;
+  }
+  

@@ -1,0 +1,118 @@
+<div class="container my-5">
+  <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+    <form #memberForm="ngForm" (ngSubmit)="searchMember()">
+      <h3 class="text-center mb-4 text-primary fw-bold">Search Member</h3>
+
+   
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold" for="searchType">Search By</label>
+        <select
+          class="form-select"
+          id="searchType"
+          [(ngModel)]="searchType"
+          name="searchType"
+          required
+        >
+          <option value="">Select Search Type</option>
+          <option value="id">ID</option>
+          <option value="email">Email</option>
+          <option value="all">All Members</option>
+        </select>
+      </div>
+
+    
+      <div class="form-group mb-4" *ngIf="searchType !== 'all'">
+        <label class="form-label fw-semibold" for="searchValue">Enter Value</label>
+        <input
+          class="form-control"
+          id="searchValue"
+          [(ngModel)]="searchValue"
+          name="searchValue"
+          required
+        />
+        <span
+          *ngIf="memberForm.submitted && !searchValue"
+          class="text-danger small"
+        >
+          Value is required
+        </span>
+        <span
+          *ngIf="searchType === 'id' && memberForm.submitted && !isInteger(searchValue)"
+          class="text-danger small"
+        >
+          ID must be an integer
+        </span>
+      </div>
+
+      
+      <div class="d-flex justify-content-center gap-3">
+        <button type="submit" class="btn btn-primary px-4">Search</button>
+        <button type="reset" class="btn btn-outline-secondary px-4">Cancel</button>
+      </div>
+    </form>
+
+    
+    
+
+
+  </div>
+</div>
+
+
+
+<div class="container my-5">
+  <div class="book-list-wrapper shadow-lg p-4 rounded">
+    <h2 class="text-center mb-4 text-primary fw-bold">Members List</h2>
+
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-info">
+        <tr>
+          <th>ID</th>
+          <th>Member Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Address</th>
+          <th>Status</th>
+          <th>Roles</th>
+          <th>Profile</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of memberlist | async">
+          <td>{{ member.memberID }}</td>
+          <td>{{ member.name }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.phone }}</td>
+          <td>{{ member.address }}</td>
+          <!-- <td>{{ member.profileimg }}</td> -->
+          <td>{{ member.membershipStatus }}</td>
+          <td >{{ member.role }}</td>
+         
+          
+            <td>
+              
+        <img [src]="member?.profileimg" height="100" width="100" alt="Description of image">
+                     
+            </td>
+            <td class="text-center" *ngIf="member.role=='User'">
+              <button
+                class="btn btn-warning btn-sm px-3"
+                (click)="editMember(member.memberID)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm px-3 ms-2"
+                (click)="deleteMember(member.memberID)"
+              >
+                Delete
+              </button>
+            </td>
+           
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

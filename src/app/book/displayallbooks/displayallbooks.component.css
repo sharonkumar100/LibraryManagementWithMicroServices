@@ -1,0 +1,33 @@
+.book-list-wrapper {
+    background-color: #f8f9fa; 
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  .table thead th {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .table tbody td {
+    vertical-align: middle;
+  }
+  
+  button.btn-warning {
+    background-color: #ffc107;
+    border: none;
+  }
+  
+  button.btn-warning:hover {
+    background-color: #e0a800;
+  }
+  
+  button.btn-danger {
+    background-color: #dc3545;
+    border: none;
+  }
+  
+  button.btn-danger:hover {
+    background-color: #bb2d3b;
+  }
+  

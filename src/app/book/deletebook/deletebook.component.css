@@ -1,0 +1,28 @@
+.form-wrapper {
+    background-color: #f8f9fa; 
+    max-width: 500px;
+  }
+  
+  input.ng-touched.ng-invalid {
+    border-color: #dc3545; 
+    background-color: #f8d7da; 
+  }
+  
+  input.ng-touched.ng-valid {
+    border-color: #198754; 
+    background-color: #d1e7dd;
+  }
+  
+  button.btn-danger {
+    background-color: #dc3545;
+    border: none;
+  }
+  
+  button.btn-danger:hover {
+    background-color: #bb2d3b;
+  }
+  
+  button.btn-outline-secondary:hover {
+    background-color: #e2e6ea;
+  }
+  

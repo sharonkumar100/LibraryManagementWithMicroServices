@@ -1,0 +1,69 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light vh-100" style="width: 250px;">
+    <h4 class="text-center mb-4">Library Modules</h4>
+    <ul class="nav nav-pills flex-column mb-auto">
+    
+      <li>
+        <a class="nav-link" [ngClass]="{'active': activeModule === 'BookManagement'}" (click)="toggleModule('BookManagement')" style="cursor: pointer;">
+          📚 Book Management
+        </a>
+        <ul class="list-unstyled ms-3" *ngIf="activeModule === 'BookManagement'">
+          <li *ngIf="role==='Admin'"><a routerLink="/mainpage/add-book" routerLinkActive="active" class="nav-link sub-link" (click)="addBook()" style="cursor: pointer;">➕ Add Book</a></li>
+          <li *ngIf="role==='Admin'"><a routerLink="/delete-book" routerLinkActive="active" class="nav-link sub-link" (click)="deleteBook()" style="cursor: pointer;">❌ Delete Book</a></li>
+          <li><a routerLink="/all-books" routerLinkActive="active" class="nav-link sub-link" (click)="showBooks()" style="cursor: pointer;">📖 All Books</a></li>
+          <li><a routerLink="/get-book" routerLinkActive="active" class="nav-link sub-link" (click)="getBook()" style="cursor: pointer;">🔍 Get Book</a></li>
+          <!-- <li *ngIf="role==='Admin'"><a routerLink="/update-book" routerLinkActive="active" class="nav-link sub-link" (click)="updateBook()" style="cursor: pointer;">✏️ Update Book</a></li> -->
+        </ul>
+      </li>
+  
+  
+      <li *ngIf="role==='Admin'">
+        <a class="nav-link" [ngClass]="{'active': activeModule === 'MemberManagement'}" (click)="toggleModule('MemberManagement')" style="cursor: pointer;">
+          👥 Member Management
+        </a>
+        <ul class="list-unstyled ms-3" *ngIf="activeModule === 'MemberManagement'">
+          <li *ngIf="role==='Admin'"><a routerLink="/register-member" routerLinkActive="active" class="nav-link sub-link" (click)="registerMember()" style="cursor: pointer;">📝 Register Member</a></li>
+          <li *ngIf="role==='Admin'"><a routerLink="/get-member" routerLinkActive="active" class="nav-link sub-link" (click)="getMember()" style="cursor: pointer;">🔍 Get Member</a></li>
+          <li *ngIf="role==='Admin'"><a routerLink="/delete-member" routerLinkActive="active" class="nav-link sub-link" (click)="deleteMember()" style="cursor: pointer;">❌ Delete Member</a></li>
+        </ul>
+      </li>
+  
+     
+      <li>
+        <a class="nav-link" [ngClass]="{'active': activeModule === 'Transactions'}" (click)="toggleModule('Transactions')" style="cursor: pointer;">
+          🔄 Transactions
+        </a>
+        <ul class="list-unstyled ms-3" *ngIf="activeModule === 'Transactions'">
+          <li *ngIf="role==='Admin'"><a routerLink="/borrow-book" routerLinkActive="active" class="nav-link sub-link" (click)="borrowBook()" style="cursor: pointer;">📥 Borrow Book</a></li>
+          <li *ngIf="role==='Admin'"><a routerLink="/return-book" routerLinkActive="active" class="nav-link sub-link" (click)="returnBook()" style="cursor: pointer;">📤 Return Book</a></li>
+          <li><a routerLink="/get-transaction" routerLinkActive="active" class="nav-link sub-link" (click)="getTransaction()"style="cursor: pointer;">🔍 Get Transaction</a></li>
+        </ul>
+      </li>
+  
+     
+      <li>
+        <a class="nav-link" [ngClass]="{'active': activeModule === 'Fines'}" (click)="toggleModule('Fines')" style="cursor: pointer;">
+          💰 Fines
+        </a>
+        <ul class="list-unstyled ms-3" *ngIf="activeModule === 'Fines'">
+          <li *ngIf="role==='Admin'"><a routerLink="/clear-fine" routerLinkActive="active" class="nav-link sub-link" (click)="clearFine()" style="cursor: pointer;">🧹 Clear Fine</a></li>
+          <li><a routerLink="/get-fines" routerLinkActive="active" class="nav-link sub-link" (click)="getFine()" style="cursor: pointer;">🔍 Get Fines</a></li>
+        </ul>
+      </li>
+
+      <li *ngIf="role==='Admin'">
+        <a class="nav-link" [ngClass]="{'active': activeModule === 'Notifications'}" (click)="toggleModule('Notifications')" style="cursor: pointer;">
+          🔔 Notifications
+        </a>
+        <ul class="list-unstyled ms-3" *ngIf="activeModule === 'Notifications'">
+          <li><a routerLink="/notifications" routerLinkActive="active" class="nav-link sub-link" (click)="notifications()" style="cursor: pointer;">📢 Show Notifications</a></li>
+        </ul>
+      </li>
+  
+      <!-- <li>
+        <a routerLink="/logout" routerLinkActive="active" class="nav-link">
+          🚪 Logout
+        </a>
+      </li> -->
+    </ul>
+  </div>
+  

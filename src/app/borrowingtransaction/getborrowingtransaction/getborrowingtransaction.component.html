@@ -1,0 +1,93 @@
+<div class="container my-5">
+    <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+      <form #transactionForm="ngForm" (ngSubmit)="searchTransaction()">
+        <h3 class="text-center mb-4 text-primary fw-bold">Search Transactions</h3>
+  
+      
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold" for="searchType">Search By</label>
+          <select
+            class="form-select"
+            id="searchType"
+            [(ngModel)]="searchType"
+            name="searchType"
+            required
+          >
+            <option value="memberID" *ngIf="role==='Admin'">Member ID</option>
+            <option value="bookID">Book ID</option>
+            <option value="all">All Transactions</option>
+          </select>
+        </div>
+  
+       
+        <div class="form-group mb-4" *ngIf="searchType !== 'all'">
+          <label class="form-label fw-semibold" for="searchValue">Enter Value</label>
+          <input
+            class="form-control"
+            id="searchValue"
+            [(ngModel)]="searchValue"
+            name="searchValue"
+            required
+          />
+          <span
+            *ngIf="transactionForm.submitted && !searchValue"
+            class="text-danger small"
+          >
+            Value is required
+          </span>
+          <span
+            *ngIf="searchType === 'memberID' && transactionForm.submitted && !isInteger(searchValue)"
+            class="text-danger small"
+          >
+            Member ID must be an integer
+          </span>
+          <span
+            *ngIf="searchType === 'bookID' && transactionForm.submitted && !isInteger(searchValue)"
+            class="text-danger small"
+          >
+            Book ID must be an integer
+          </span>
+        </div>
+  
+      
+        <div class="d-flex justify-content-center gap-3">
+          <button type="submit" class="btn btn-primary px-4">Search</button>
+          <button type="reset" class="btn btn-outline-secondary px-4">Cancel</button>
+        </div>
+      </form>
+  
+      
+    </div>
+  </div>
+  
+
+  <div class="container my-5">
+    <div class="book-list-wrapper shadow-lg p-4 rounded">
+      <h2 class="text-center mb-4 text-primary fw-bold">Transactions List</h2>
+  
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-info">
+          <tr>
+            <th>TransactionID</th>
+            <th>BookId</th>
+            <th>MemberId</th>
+            <th>BorrowDate</th>
+            <th>ReturnDate</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions | async">
+            <td>{{ transaction.transactionID }}</td>
+            <td>{{ transaction.bookId }}</td>
+            <td>{{ transaction.memberId }}</td>
+            <td>{{ transaction.borrowDate }}</td>
+            <td>{{ transaction.returnDate }}</td>
+            <td>{{ transaction.status }}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

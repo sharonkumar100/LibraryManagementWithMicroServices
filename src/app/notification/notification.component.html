@@ -1,0 +1,102 @@
+<!-- <div class="container my-5"> -->
+  <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+      <div class="d-flex justify-content-center gap-3">
+          <button type="submit" class="btn btn-primary px-4" onclick="notifybtn()">
+              notify
+          </button>
+      </div>
+
+
+
+<div class="container my-5">
+  <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+    <form #memberForm="ngForm" (ngSubmit)="searchNotification()">
+      <h3 class="text-center mb-4 text-primary fw-bold">Send Notifications</h3>
+
+   
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold" for="searchType">Send By</label>
+        <select
+          class="form-select"
+          id="searchType"
+          [(ngModel)]="searchType"
+          name="searchType"
+          required
+        >
+          <option value="" *ngIf="role==='Admin'">Select Search Type</option>
+          <option value="id" *ngIf="role==='Admin'">Member ID</option>
+          <option value="email" *ngIf="role==='Admin'">Email</option>
+          <option value="all">All Members</option>
+        </select>
+      </div>
+
+    
+      <div class="form-group mb-4" *ngIf="searchType !== 'all'">
+        <label class="form-label fw-semibold" for="searchValue">Enter Value</label>
+        <input
+          class="form-control"
+          id="searchValue"
+          [(ngModel)]="searchValue"
+          name="searchValue"
+          required
+        />
+        <span
+          *ngIf="memberForm.submitted && !searchValue"
+          class="text-danger small"
+        >
+          Value is required
+        </span>
+        <span
+          *ngIf="searchType === 'id' && memberForm.submitted && !isInteger(searchValue)"
+          class="text-danger small"
+        >
+          ID must be an integer
+        </span>
+      </div>
+
+     
+      <div class="d-flex justify-content-center gap-3">
+        <button type="submit" class="btn btn-primary px-4">Send</button>
+        <button type="reset" class="btn btn-outline-secondary px-4">Cancel</button>
+      </div>
+    </form>
+
+    
+    
+
+
+  </div>
+</div>
+
+
+
+
+
+    <div class="container my-5">
+        <div class="book-list-wrapper shadow-lg p-4 rounded">
+          <h2 class="text-center mb-4 text-primary fw-bold">Notifications List</h2>
+      
+          <table class="table table-striped table-bordered align-middle">
+            <thead class="table-info">
+              <tr>
+                <th>ID</th>
+                <th>MemberId</th>
+                <th>Message</th>
+                <th>DateSent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let notification of notifications | async">
+                <td>{{ notification.notificationID }}</td>
+                <td>{{ notification.memberId }}</td>
+                <td>{{ notification.message }}</td>
+                <td>{{ notification.dateSent }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+
+
+</div>

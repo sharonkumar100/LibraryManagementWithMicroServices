@@ -1,0 +1,101 @@
+<div class="container my-5">
+  <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+    <form (ngSubmit)="updateMember()">
+      <h3 class="text-center mb-4 text-primary fw-bold">Update Member</h3>
+
+   
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Enter Member ID</label>
+        <input class="form-control" [(ngModel)]="member.memberID" name="memberID" #memberID="ngModel" required />
+        <span *ngIf="memberID.touched && memberID.errors?.['required']" class="text-danger small">
+          Member ID is blank
+        </span>
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Enter Member Name</label>
+        <input class="form-control" [(ngModel)]="member.name" name="name" #name="ngModel" required />
+        <span *ngIf="name.touched && name.errors?.['required']" class="text-danger small">
+          Name is blank
+        </span>
+      </div>
+
+
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Enter Email</label>
+        <input class="form-control" [(ngModel)]="member.email" name="email" #email="ngModel" required email />
+        <span *ngIf="email.touched && email.errors?.['required']" class="text-danger small">
+          Email is blank
+        </span>
+        <span *ngIf="email.touched && email.errors?.['email']" class="text-danger small">
+          Email is invalid
+        </span>
+      </div>
+
+   
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Enter Phone Number</label>
+        <input class="form-control" [(ngModel)]="member.phone" name="phone" #phone="ngModel" required
+          pattern="^[0-9]{10}$" />
+        <span *ngIf="phone.touched && phone.errors?.['required']" class="text-danger small">
+          Phone number is blank
+        </span>
+        <span *ngIf="phone.touched && phone.errors?.['pattern']" class="text-danger small">
+          Phone number must be 10 digits long and contain only numbers
+        </span>
+      </div>
+
+    
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Enter Address</label>
+        <input class="form-control" [(ngModel)]="member.address" name="address" />
+      </div>
+
+     
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Enter Membership Status</label>
+        <select class="form-control" [(ngModel)]="member.membershipStatus" name="membershipStatus"
+          #membershipStatus="ngModel" required>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+        <span *ngIf="membershipStatus.touched && membershipStatus.errors?.['required']" class="text-danger small">
+          Membership status is required
+        </span>
+      </div>
+
+
+     
+      <div class="form-group mb-4">
+        <label class="form-label fw-semibold">Upload Profile Image</label>
+        <input type="file" class="form-control-file" (change)="onFileSelected($event)" accept="image/*" />
+        <div class="mt-3 text-center" *ngIf="imagePreview">
+          <p class="fw-semibold">Image Preview:</p>
+          <img *ngIf="imagePreview; else defaultImage" ;
+            [src]="imagePreview || member.profileimg || 'assets/member/download.png'" alt="Profile Preview" width="150"
+            class="img-thumbnail" />
+          <ng-template #defaultImage>
+            <img [src]="member.profileimg" alt="Existing Book Image" width="150" class="img-thumbnail" />
+          </ng-template>
+        </div>
+      </div>
+
+
+
+     
+      <div class="d-flex justify-content-center gap-3">
+        <button type="submit" class="btn btn-success px-4">
+          Update Member
+        </button>
+        <button type="reset" class="btn btn-outline-secondary px-4">
+          Cancel
+        </button>
+      </div>
+    </form>
+
+   
+    <div *ngIf="msg" class="mt-3 alert alert-info text-center">
+      <pre>{{ msg }}</pre>
+    </div>
+  </div>
+</div>

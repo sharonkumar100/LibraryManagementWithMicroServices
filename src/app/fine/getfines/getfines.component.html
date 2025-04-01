@@ -1,0 +1,106 @@
+<div class="container my-5">
+    <div class="form-wrapper mx-auto shadow-lg p-4 rounded">
+      <form #fineForm="ngForm" (ngSubmit)="searchFines()">
+        <h3 class="text-center mb-4 text-primary fw-bold">Search Fines</h3>
+  
+       
+        <div class="form-group mb-4">
+          <label for="searchType" class="form-label fw-semibold">Search By</label>
+          <select
+            class="form-select"
+            id="searchType"
+            [(ngModel)]="searchType"
+            name="searchType"
+            required
+          >
+            <option value="all" >All Fines</option>
+            <option value="memberID" *ngIf="role==='Admin'">Member ID</option>
+            <option value="totalFine" *ngIf="role==='Admin'">Total Fine by Member ID</option>
+          </select>
+        </div>
+  
+      
+        <div class="form-group mb-4" *ngIf="searchType !== 'all'">
+          <label for="searchValue" class="form-label fw-semibold">Enter Value</label>
+          <input
+            class="form-control"
+            id="searchValue"
+            [(ngModel)]="searchValue"
+            name="searchValue"
+            required
+          />
+          <span
+            *ngIf="fineForm.submitted && !searchValue"
+            class="text-danger small"
+          >
+            Value is required
+          </span>
+          <span
+            *ngIf="searchType === 'memberID' && fineForm.submitted && !isInteger(searchValue)"
+            class="text-danger small"
+          >
+            Member ID must be an integer
+          </span>
+          <span
+            *ngIf="searchType === 'totalFine' && fineForm.submitted && !isInteger(searchValue)"
+            class="text-danger small"
+          >
+            Member ID must be an integer
+          </span>
+        </div>
+  
+  
+        <div class="d-flex justify-content-center gap-3">
+          <button type="submit" class="btn btn-primary px-4">Search</button>
+          <button type="reset" class="btn btn-outline-secondary px-4">Cancel</button>
+        </div>
+      </form>
+  
+
+      <div *ngIf="msg" class="mt-3 alert alert-info text-center">
+        <pre>{{ msg }}</pre>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="container my-5">
+    <h3 class="text-center mb-4 text-primary fw-bold">Fines List</h3>
+    <div class="table-responsive shadow rounded">
+      <table class="table table-hover table-bordered align-middle">
+        <thead class="table-primary">
+          <tr class="text-center">
+            <th>Fine ID</th>
+            <th>Member ID</th>
+            <th>Amount</th>
+            <th>Date Issued</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fine of finesList" class="text-center">
+            <td>{{ fine.fineID }}</td>
+            <td>{{ fine.memberId }}</td>
+            <td>{{ fine.amount | currency:'INR' }}</td>
+            <td>{{ fine.transactionDate }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  'badge bg-success': fine.status === 'Paid',
+                  'badge bg-warning text-dark': fine.status === 'Pending',
+                  'badge bg-danger': fine.status === 'Overdue'
+                }"
+              >
+                {{ fine.status }}
+              </span>
+            </td>
+           
+          </tr>
+          <tr *ngIf="!finesList || finesList.length === 0">
+            <td colspan="6" class="text-center text-muted">No fines found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

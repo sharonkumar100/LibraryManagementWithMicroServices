@@ -1,0 +1,24 @@
+
+<header class="text-white text-center py-4" style="background: linear-gradient(to right, #1e3c72, #2a5298);">
+  <h1>Library Management System</h1>
+</header>
+
+
+<nav class="navbar navbar-expand-lg" style="background: linear-gradient(to right, #232526, #414345);">
+  <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">Home</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+          </ul>
+          
+          <div class="d-flex">
+              <button class="btn btn-outline-light me-2 px-4 py-2" (click)="onButtonClick()" style="border-color: #ffcc00; color: #ffcc00;">
+                  {{ isLogin ? 'Logout' : 'Login' }}
+              </button>
+          </div>
+      </div>
+  </div>
+</nav>
